@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Forecast</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>  
+</head>
+<body>
+  <div class="container">
+    <h2 class="section-heading-h2">Sales & Profit<span class="add-span">Forecaster</span> <img src="{% static 'prediction.png' %}" class="forecasting-image-cls" alt="forecasting-image" width="80px"></h2>
+    <div class="form-image-wrapper">
+      <form method="POST" action="/predict/" enctype="multipart/form-data" class="form-element mob-width">
+        {% csrf_token %}
+        <div class="flex-elem">
+          <label for="category">Category:</label>
+            <select name="category" id="category" required>
+            <option value="Technology">Technology</option>
+            <option value="Furniture">Furniture</option>
+          <option value="Office Supplies">Office Supplies</option>
+          </select>
+        </div>
+        <button type="submit" class="predict-button-style">Predict <i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+      <div class="side--image-main mob-width">
+        <img src="{% static 'sideimage.png' %}" alt="sales-profit-vector" width="70%">
+      </div>
+    </div>
+  </div> 
+</body>
+
+</html>

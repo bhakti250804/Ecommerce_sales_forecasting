@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Result</title>
+  <link rel="stylesheet" href="{% static 'result.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h2 class="section-heading-h2">Category: {{ category }}</h2>
+
+    <h3 class="label-heading">Past 6 Months</h3>
+    <div class="table-wrapper">
+      <table>
+        <tr><th>Month</th><th>Sales</th><th>Profit</th></tr>
+        {% for row in past_data %}
+          <tr>
+            <td>{{ row.ds|date:"Y-m-d" }}</td>
+            <td>{{ row.y_sales|floatformat:2 }}</td>
+            <td>{{ row.y_profit|floatformat:2 }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <h3 class="label-heading">Next 6 Months Forecast</h3>
+    <div class="table-wrapper">
+      <table>
+        <tr><th>Month</th><th>Predicted Sales</th><th>Predicted Profit</th></tr>
+        {% for row in future_data %}
+          <tr>
+            <td>{{ row.Month|date:"Y-m-d" }}</td>
+            <td>{{ row.Predicted_Sale|floatformat:2 }}</td>
+            <td>{{ row.Predicted_Profit|floatformat:2 }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+
+    <form method="GET" action="/graph/">
+      <button type="submit" class="show-button-style">Show Graph</button>
+    </form>
+  </div>
+</body>
+</html>
