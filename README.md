@@ -1,30 +1,30 @@
-# E-commerce Sales and Profit Forecasting
+# E-commerce Sales and Profit Forecasting (Web Edition)
 
-This project is designed to predict future sales and profits based on historical e-commerce data. It utilizes machine learning for time-series forecasting, specifically leveraging Facebook's Prophet model.
+This project predicts future sales and profits based on historical e-commerce data. It features two core components: a classic Jupyter Notebook for data exploration, and a full-stack **Django Web Application** to serve predictions and dynamic charts utilizing machine learning (Facebook's Prophet model).
 
 ## Features
 
+*   **Django Web Application:** A sleek web interface allowing users to select product categories and instantly view forecasted sales/profits charts.
 *   **Data Preparation & Cleaning:** Loads historical sales data (e.g., `store.csv`), handles missing values, and prepares it for time-series analysis.
-*   **Data Exploration (EDA):** Analyzes sales trends, profits, and overall data distributions using `pandas`, `matplotlib`, and `seaborn`.
-*   **Time-Series Forecasting:** Uses `Prophet` to train on the historical data and predict future sales and profit trends.
-*   **Model Persistence:** Saves the trained forecasting models as `.pkl` files (`sales_model.pkl` and `profit_model.pkl`) for future use without having to retrain.
+*   **Time-Series Forecasting:** Uses `Prophet` to train on the historical data and predict future trends.
+*   **Model Persistence:** Saves the trained forecasting models as `.pkl` files (Joblib) for high performance caching in the backend.
 
-## Setup Instructions
+## Web App Setup Instructions
 
-1.  **Dependencies:** Ensure you have Python installed. The required libraries include:
-    *   `prophet`
-    *   `pandas`
-    *   `matplotlib`
-    *   `scikit-learn`
-    *   `numpy`
-    *   `seaborn`
+1.  **Dependencies:** Install the project dependencies using the provided `requirements.txt`:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-    You can install them via pip, or run the first cell of the notebook.
+2.  **Dataset & Models:** Ensure your dataset and pickled models are present in the internal data structure (`forecast_project/mainapp/data` and `forecast_project/mainapp/model`).
 
-2.  **Dataset:** The project requires a dataset containing historical sales data named `store.csv` in the same directory. The data should have relevant columns like `Order Date`, `Sales`, and `Profit`.
+3.  **Start the Web Server:** Launch the Django backend.
+    ```bash
+    cd forecast_project
+    python manage.py runserver
+    ```
 
-3.  **Running the Project:** Open and run the Jupyter Notebook `sales_profit_prediction.ipynb`. The notebook steps through data loading, EDA, model training, and forecasting.
+4.  **Access:** Navigate to `http://127.0.0.1:8000/` in your browser to view the application!
 
-## Usage
-
-After running the notebook and training the models, they will forecast sales for the upcoming periods. The visualizations generated will help you understand the seasonality and general trend of sales and profits over time.
+## Jupyter Notebook Analysis (Research)
+To see the step-by-step EDA and training logic, open and run the Jupyter Notebook `sales_profit_prediction.ipynb` located in the root folder.
